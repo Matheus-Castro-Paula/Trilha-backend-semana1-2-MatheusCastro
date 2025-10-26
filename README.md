@@ -17,37 +17,40 @@ O foco desta etapa é a criação do **banco de dados relacional** e sua **conta
 ---
 
 ## Estrutura do Projeto
+
+```text
 projeto-matheus_castro-trilha-backend/
 ├── backend/
-|    ├── config/
-|    |    ├──config.js  # Configuração do Sequelize
-|    |
-|    ├── migrations/   # Migrações do banco (criar tabelas)
-|    |    ├── 20251025-1-create-clientes.js 
-|    |    ├── 20251025-2-create-compras.js
-|    |    ├── 20251025-3-create-produtos.js
-        ```bash
-          ##Esses aquivos contém uma numeração (além da data) pois é necessária para serem executados na ordem certa 
-        ```
-|    |
-|    ├── models/   # Modelos do Sequelize (cliente, compra, etc.)
-|    |    ├── cliente.js
-|    |    ├── compra.js
-|    |    ├── index.js
-|    |    ├── produto.js
-|    |
-|    ├── node_modules/
-|    |
-|    ├── .env.example  # Exemplo de variáveis de ambiente
-|    ├── .sequelizerc
-|    ├── Dockerfile   # Receita para construir o container do backend
-|    ├── package-lock.json
-|    ├── package.json
-|    ├── server.js   # Ponto de entrada da aplicação
+|   ├── config/
+|   |   ├──config.js  # Configuração do Sequelize
+|   |
+|   ├── migrations/   # Migrações do banco (criar tabelas)
+|   |   ├── 20251025-1-create-clientes.js 
+|   |   ├── 20251025-2-create-compras.js
+|   |   ├── 20251025-3-create-produtos.js
+|   |   #
+|   |   # ##Esses aquivos contém uma numeração (além da data) pois é 
+|   |   #   necessária para serem executados na ordem certa 
+|   |
+|   ├── models/   # Modelos do Sequelize (cliente, compra, etc.)
+|   |   ├── cliente.js
+|   |   ├── compra.js
+|   |   ├── index.js
+|   |   ├── produto.js
+|   |
+|   ├── node_modules/ # (Ignorado pelo .gitignore)
+|   |
+|   ├── .env.example  # Exemplo de variáveis de ambiente
+|   ├── .sequelizerc
+|   ├── Dockerfile   # Receita para construir o container do backend
+|   ├── package-lock.json
+|   ├── package.json
+|   ├── server.js   # Ponto de entrada da aplicação
 |
 ├── .gitignore
 ├── docker-compose.yml   # Orquestrador dos serviços (backend + db)
 ├── README.md   # Este arquivo
+```
 
 ---
 
