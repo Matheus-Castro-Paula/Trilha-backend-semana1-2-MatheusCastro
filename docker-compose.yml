@@ -2,13 +2,47 @@ services:
   db:
     image: mysql:8.0
     container_name: mysql_db
-    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: loja_de_materiais_escolares
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: loja
       MYSQL_USER: user
       MYSQL_PASSWORD: userpass
     ports:
       - "3307:3306"
     volumes:
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - db_data:/var/lib/mysql
+    networks:
+      - backend-network
+    # --- BLOCO ATUALIZADO ---
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--port=3306", "-u", "user", "-puserpass"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  backend:
+    build: ./backend
+    container_name: api_backend
+    depends_on:
+      db:
+        condition: service_healthy # Isso agora vai funcionar
+    environment:
+      DB_HOST: db
+      DB_USER: user
+      DB_PASSWORD: userpass
+      DB_NAME: loja
+      DB_PORT: 3306
+      PORT: 3000
+      NODE_ENV: development
+    ports:
+      - "3000:3000"
+    networks:
+      - backend-network
+
+volumes:
+  db_data:
+
+networks:
+  backend-network:
+    driver: bridge
